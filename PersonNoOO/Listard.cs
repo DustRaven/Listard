@@ -46,7 +46,7 @@ namespace PersonNoOO
 
         int GetCount()
         {
-            throw new NotImplementedException();
+            return Count;
         }
 
         Person GetFirst()

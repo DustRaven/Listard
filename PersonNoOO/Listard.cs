@@ -51,12 +51,20 @@ namespace PersonNoOO
 
         Person GetFirst()
         {
-            throw new NotImplementedException();
+            return persons[0];
         }
 
         Person GetLast()
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < persons.Length; index++)
+            {
+                if (persons[index] == null)
+                {
+                    return persons[index - 1];
+                }
+            }
+
+            return null;
         }
 
         int IndexOf(Person p)

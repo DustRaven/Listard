@@ -11,14 +11,11 @@ namespace PersonNoOO
         {
             get { return persons.Length; }
         }
-
-        /**
-         * @todo Implement this[int index]
-         * @body Dunno what this should do...
-         */
+        
         public Person this[int index]
         {
-            get { throw new NotImplementedException(); }
+            get { return persons[index]; }
+            set { persons[index] = value; }
         }
 
         private void ResizeList()

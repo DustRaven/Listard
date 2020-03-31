@@ -69,12 +69,29 @@ namespace PersonNoOO
 
         int IndexOf(Person p)
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < persons.Length; index++)
+            {
+                if (persons[index] == p)
+                {
+                    return index;
+                }
+            }
+
+            return -1;
         }
 
         void InsertAt(int index, Person p)
         {
-            throw new NotImplementedException();
+            Person lastPerson = GetLast();
+            int lastIndex = IndexOf(lastPerson);
+            
+            Add(lastPerson);
+            for (int tempIndex = lastIndex; tempIndex > index; tempIndex--)
+            {
+                persons[tempIndex] = persons[tempIndex - 1];
+            }
+
+            persons[index] = p;
         }
 
         bool Remove(Person p)

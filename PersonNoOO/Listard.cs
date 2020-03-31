@@ -2,7 +2,6 @@
 
 namespace PersonNoOO
 {
-    //TODO DO STUFF!
     public class Listard
     {
         private static int listSize = 0;

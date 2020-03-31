@@ -43,14 +43,10 @@ namespace PersonNoOO
         {
             return IndexOf(person) >= 0;
         }
-
-        /**
-         * @todo Implement Get(int index)
-         * @body This should return a Person object at the given index.
-         */
+        
         Person Get(int index)
         {
-            throw new NotImplementedException();
+            return persons[index];
         }
 
         int GetCount()
@@ -103,32 +99,26 @@ namespace PersonNoOO
             persons[index] = p;
         }
 
-        /**
-         * @todo Implement Remove(Person p)
-         * @body This should remove a person from the list, identified by a Person object and return true if the operation
-         * was successful, otherwise false.
-         */
         bool Remove(Person p)
         {
-            throw new NotImplementedException();
-        }
+            int countBefore = IndexOf(GetLast()) + 1;
+            for (int index = IndexOf(p); index < IndexOf(GetLast()); index++)
+            {
+                persons[index] = persons[index++];
+            }
 
-        /**
-         * @todo Implement Replace(Person oldPerson, Person newPerson)
-         * @body Obviously, this should replace a given person with another.
-         */
+            persons[IndexOf(GetLast())] = null;
+            return (countBefore - 1) == IndexOf(GetLast());
+        }
+        
         void Replace(Person oldPerson, Person newPerson)
         {
-            throw new NotImplementedException();
+            persons[IndexOf(oldPerson)] = newPerson;
         }
 
-        /**
-         * @todo Implement ReplaceAt(int index, Person p)
-         * @body This should replace a person at a given index.
-         */
         void ReplaceAt(int index, Person p)
         {
-            throw new NotImplementedException();
+            persons[index] = p;
         }
 
         /**

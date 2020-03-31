@@ -37,14 +37,11 @@ namespace PersonNoOO
             }
             persons[Count+1] = p;
         }
-
-        /**
-         * @todo Implement Contains()
-         * @body Something is missing here, like a parameter...
-         */
-        bool Contains()
+        
+        
+        bool Contains(Person person)
         {
-            throw new NotImplementedException();
+            return IndexOf(person) >= 0;
         }
 
         /**

@@ -12,6 +12,10 @@ namespace PersonNoOO
             get { return persons.Length; }
         }
 
+        /**
+         * @todo Implement this[int index]
+         * @body Dunno what this should do...
+         */
         public Person this[int index]
         {
             get { throw new NotImplementedException(); }
@@ -34,11 +38,19 @@ namespace PersonNoOO
             persons[Count+1] = p;
         }
 
+        /**
+         * @todo Implement Contains()
+         * @body Something is missing here, like a parameter...
+         */
         bool Contains()
         {
             throw new NotImplementedException();
         }
 
+        /**
+         * @todo Implement Get(int index)
+         * @body This should return a Person object at the given index.
+         */
         Person Get(int index)
         {
             throw new NotImplementedException();
@@ -94,21 +106,39 @@ namespace PersonNoOO
             persons[index] = p;
         }
 
+        /**
+         * @todo Implement Remove(Person p)
+         * @body This should remove a person from the list, identified by a Person object and return true if the operation
+         * was successful, otherwise false.
+         */
         bool Remove(Person p)
         {
             throw new NotImplementedException();
         }
 
+        /**
+         * @todo Implement Replace(Person oldPerson, Person newPerson)
+         * @body Obviously, this should replace a given person with another.
+         */
         void Replace(Person oldPerson, Person newPerson)
         {
             throw new NotImplementedException();
         }
 
+        /**
+         * @todo Implement ReplaceAt(int index, Person p)
+         * @body This should replace a person at a given index.
+         */
         void ReplaceAt(int index, Person p)
         {
             throw new NotImplementedException();
         }
 
+        /**
+         * @todo Implement Sort(bool byFirstname, bool ascending)
+         * @body Sorting the list. By firstname if the first parameter is "true" (defaults to "false"), ascending if the
+         * second parameter is "true" (defaults to "true").
+         */
         void Sort(bool byFirstname = false, bool ascending = true)
         {
             throw new NotImplementedException();

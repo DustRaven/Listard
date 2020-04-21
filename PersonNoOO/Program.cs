@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace PersonNoOO
@@ -18,14 +19,37 @@ namespace PersonNoOO
             personList = Load();
 
             if (personList.Count == 0) {
-                Person person = new Person("Irma", "Iller", "0179 987654321");
+                Person person = new Person("Alma", "Iller", "0179 987654321");
                 personList.Add(person);
 
                 Person person2 = new Person("Hugo", "Heller", "+49 (0)221 123456");
                 personList.Add(person2);
             }
+            
+            Listard list = new Listard();
+            foreach (Person p in personList)
+            {
+                list.Add(new Person(p.FirstName, p.LastName, p.PhoneNumber));
+            }
+            
+            Console.WriteLine("Lastname asc:");
+            list.Sort();
+            Display(list);
 
-            Display(personList);
+            Console.WriteLine("\nLastname desc:");
+            list.Sort(false, false);
+            Display(list);
+            
+            Console.WriteLine("\nFirstname asc:");
+            list.Sort(true);
+            Display(list);
+
+            Console.WriteLine("\nFirstname desc:");
+            list.Sort(true, false);
+            Display(list);
+
+
+            // Display(personList);
     
             Store(personList);
 
@@ -38,6 +62,14 @@ namespace PersonNoOO
             foreach (Person person in personList)
             {
                 person.Display();
+            }
+        }
+
+        static void Display(Listard list)
+        {
+            for(int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine(list.Get(i).FirstName + ' ' + list.Get(i).LastName);
             }
         }
 

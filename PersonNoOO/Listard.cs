@@ -11,7 +11,24 @@ namespace PersonNoOO
         {
             get { return persons.Length; }
         }
-        
+
+        private int _used
+        {
+            get
+            {
+                int internalCount = 0;
+                for (int count = 0; count < Count; count++)
+                {
+                    if (persons[count] != null)
+                    {
+                        internalCount += 1;
+                    }
+                }
+
+                return internalCount;
+            }
+        }
+
         public Person this[int index]
         {
             get { return persons[index]; }
@@ -23,40 +40,41 @@ namespace PersonNoOO
             Person[] tempPersons = persons;
             listSize = listSize == 0 ? listSize = 1 : listSize *= 2;
             persons = new Person[listSize];
-            persons = tempPersons;
+            Array.Copy(tempPersons, persons, tempPersons.Length);
         }
 
         public void Add(Person p)
         {
-            if (Count + 1 >= listSize)
+            if (_used >= listSize)
             {
                 ResizeList();
             }
-            persons[Count+1] = p;
+
+            persons[_used] = p;
         }
-        
-        
-        bool Contains(Person person)
+
+
+        public bool Contains(Person person)
         {
             return IndexOf(person) >= 0;
         }
-        
-        Person Get(int index)
+
+        public Person Get(int index)
         {
             return persons[index];
         }
 
-        int GetCount()
+        public int GetCount()
         {
             return Count;
         }
 
-        Person GetFirst()
+        public Person GetFirst()
         {
             return persons[0];
         }
 
-        Person GetLast()
+        public Person GetLast()
         {
             for (int index = 0; index < persons.Length; index++)
             {
@@ -69,7 +87,7 @@ namespace PersonNoOO
             return null;
         }
 
-        int IndexOf(Person p)
+        public int IndexOf(Person p)
         {
             for (int index = 0; index < persons.Length; index++)
             {
@@ -82,11 +100,11 @@ namespace PersonNoOO
             return -1;
         }
 
-        void InsertAt(int index, Person p)
+        public void InsertAt(int index, Person p)
         {
             Person lastPerson = GetLast();
             int lastIndex = IndexOf(lastPerson);
-            
+
             Add(lastPerson);
             for (int tempIndex = lastIndex; tempIndex > index; tempIndex--)
             {
@@ -96,7 +114,7 @@ namespace PersonNoOO
             persons[index] = p;
         }
 
-        bool Remove(Person p)
+        public bool Remove(Person p)
         {
             int countBefore = IndexOf(GetLast()) + 1;
             for (int index = IndexOf(p); index < IndexOf(GetLast()); index++)
@@ -107,13 +125,13 @@ namespace PersonNoOO
             persons[IndexOf(GetLast())] = null;
             return (countBefore - 1) == IndexOf(GetLast());
         }
-        
-        void Replace(Person oldPerson, Person newPerson)
+
+        public void Replace(Person oldPerson, Person newPerson)
         {
             persons[IndexOf(oldPerson)] = newPerson;
         }
 
-        void ReplaceAt(int index, Person p)
+        public void ReplaceAt(int index, Person p)
         {
             persons[index] = p;
         }
@@ -123,9 +141,38 @@ namespace PersonNoOO
          * @body Sorting the list. By firstname if the first parameter is "true" (defaults to "false"), ascending if the
          * second parameter is "true" (defaults to "true").
          */
-        void Sort(bool byFirstname = false, bool ascending = true)
+        public void Sort(bool byFirstname = false, bool ascending = true)
         {
-            throw new NotImplementedException();
+            if (byFirstname)
+            {
+                if (ascending)
+                {
+                    Array.Sort(persons,
+                        (person1, person2) =>
+                            String.Compare(person1.FirstName, person2.FirstName, StringComparison.InvariantCulture));                    
+                }
+                else
+                {
+                    Array.Sort(persons,
+                        (person1, person2) =>
+                            String.Compare(person2.FirstName, person1.FirstName, StringComparison.InvariantCulture));
+                }
+            }
+            else
+            {
+                if (ascending)
+                {
+                    Array.Sort(persons,
+                        (person1, person2) =>
+                            String.Compare(person1.LastName, person2.LastName, StringComparison.InvariantCulture));   
+                }
+                else
+                {
+                    Array.Sort(persons,
+                        (person1, person2) =>
+                            String.Compare(person2.LastName, person1.LastName, StringComparison.InvariantCulture));
+                }
+            }
         }
     }
 }
